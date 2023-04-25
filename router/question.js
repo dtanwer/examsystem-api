@@ -14,6 +14,15 @@ router.post("/add", async (req,res)=>{
         res.json(err);
     }
 });
+router.put("/:quesId", async (req,res)=>{
+    
+    try {
+        const question= await QuestionModel.findByIdAndUpdate(req.params.quesId ,{$set: req.body });
+        res.json(question); 
+    } catch (err) {
+        res.json(err);
+    }
+});
 router.get("/", async (req,res)=>{
     
     try {
@@ -28,6 +37,17 @@ router.get("/:examId", async (req,res)=>{
     try {
         const question= await QuestionModel.find({examId:req.params.examId});
         res.json(question); 
+    } catch (err) {
+        res.json(err);
+    }
+});
+
+router.delete("/delete/:quesId", async (req,res)=>{
+
+    try {
+        const question= await QuestionModel.findByIdAndDelete(req.params.quesId);
+        res.json("Exam has been deleted");
+         
     } catch (err) {
         res.json(err);
     }

@@ -50,6 +50,15 @@ router.get("/",async (req,res)=>{
      return res.json({message:"No user found"});
   
  });
+ router.get("/:userId",async (req,res)=>{
+      const user= await UserModel.findById(req.params.userId);
+      if(user)
+     {
+           return res.json(user);
+     }
+     return res.json({message:"No user found"});
+  
+ });
  
 
 export {router as userRouter}; 
