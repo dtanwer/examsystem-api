@@ -12,7 +12,9 @@ const app=express();
 
 app.use(express.json());
 app.use(cors());
-
+app.get('/', function (req, res) {
+    res.send('Api is working!');
+ })
 app.use("/auth",userRouter);
 app.use("/exam",examRouter);
 app.use("/result",resultRouter);
